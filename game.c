@@ -13,10 +13,8 @@ const int KNIGHT_MOVES[8][2] = {
     {1, 2}, {1, -2}, {-1, 2}, {-1, -2}
 };
 
-// Initialize a new game
 Game initGame(){
     Game g;
-    // Set all grid cells to empty
     for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++){
         g.grid[i] = CELL_EMPTY;
     }       
@@ -80,14 +78,12 @@ void printBoard(Game *g){
     for (int x = 0; x < BOARD_SIZE; x++) printf(" %2d", x);
     printf("\n\n");
     
-    // Print top border row
     printf(" %2d    ", 0);
     for (int x = 0; x < BOARD_SIZE; x++){
         if (x == 0 || x == BOARD_SIZE - 1) {
             printf("   ");  
         } else {
             int index = 0 * BOARD_SIZE + x;
-            // color
             if (g->grid[index] == CELL_RED) printf(" %s●%s ", RED, RESET);
             else if (g->grid[index] == CELL_BLACK) printf(" %s●%s ", BLUE, RESET);
             else printf(" %s.%s ", WHITE, RESET);
@@ -95,7 +91,6 @@ void printBoard(Game *g){
     }
     printf("\n");
     
-    // Print horizontal separators
     printf("          ");
     for (int x = 1; x < BOARD_SIZE - 1; x++) printf("%s───%s", RED, RESET);
     printf("\n");
@@ -117,7 +112,6 @@ void printBoard(Game *g){
             else printf(" %s.%s ", WHITE, RESET);
         }
         
-        // Right vertical wall
         printf("%s│%s", BLUE, RESET);
         
         int right_index = y * BOARD_SIZE + (BOARD_SIZE - 1);
@@ -128,7 +122,6 @@ void printBoard(Game *g){
         printf("\n");
     }
     
-    // Bottom separator line
     printf("          ");
     for (int x = 1; x < BOARD_SIZE - 1; x++) printf("%s───%s", RED, RESET);
     printf("\n");
@@ -207,7 +200,7 @@ bool checkWinCondition(Game *g, int color) {
 
 int placePinAndSwitch(Game *g, int x, int y){
     if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE) return 0;
-    if ((x == 0 && y == 0) || (x == 0 && y == BOARD_SIZE - 1) || (x == BOARD_SIZE - 1 && y == 0) || (x == BOARD_SIZE - 1 && y == BOARD_SIZE - 1)){
+    if ((x == 0 && y == 0)|| (x == BOARD_SIZE - 1 && y == 0) || (x == 0 && y == BOARD_SIZE - 1)  || (x == BOARD_SIZE - 1 && y == BOARD_SIZE - 1)){
         return 0;
     }
     
