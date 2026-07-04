@@ -1,4 +1,4 @@
-# Twixt CLI Game 🎮
+# Twixt CLI Game 
 
 A terminal-based implementation of the classic strategy board game Twixt, built in C with colored output and intelligent game mechanics.
 
